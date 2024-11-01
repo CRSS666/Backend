@@ -1,12 +1,11 @@
 import mysql, { Pool } from 'mysql2/promise';
 
 class Database {
-  static  instance: (Database | null) = null;
-  private pool:     (Pool | null)     = null;
+  static instance: Database | null = null;
+  private pool: Pool | null = null;
 
   constructor() {
-    if(Database.instance)
-      return Database.instance;
+    if (Database.instance) return Database.instance;
 
     this.pool = mysql.createPool({
       database: process.env.DB_NAME,
@@ -21,8 +20,6 @@ class Database {
 
     Database.instance = this;
   }
-
-  
 }
 
 export default Database;
